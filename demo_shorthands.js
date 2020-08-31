@@ -7,7 +7,7 @@
     let user = {
         firstName,
         lastName,
-        fullName: function(){ return `${this.firstName} ${this.lastName}`}
+        fullName(){ return `${this.firstName} ${this.lastName}`}
     }
     display(user.fullName())
   };
