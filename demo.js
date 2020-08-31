@@ -1,15 +1,18 @@
 'use strict'; 
 (function() {
 
-  let person = {
-    firstName: 'Paco Pedro',
-    lastName: 'D`lamar'
+  class Person {
+    constructor(firstName, lastName, age) {
+      this.firstName = firstName,
+        this.lastName = lastName,
+        this.age = age;
+    }
   }
 
-  display(Object.keys(person))
+  let personA = new Person('Mario', 'Perez', 33);
+  let personB = new Person('Hazel', 'Perez', 42)
 
-  for (let props in person) {
-    display(props)
-  }
+  display(personA);
+  display(personB);
 
 })();

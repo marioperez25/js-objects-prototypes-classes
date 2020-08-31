@@ -8,8 +8,8 @@
 
   display(Object.keys(person))
 
-  for (let props in person) {
-    display(props)
+  for (let key in person) {
+    display(person[key])
   }
 
 })();
