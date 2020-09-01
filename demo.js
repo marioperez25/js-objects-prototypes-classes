@@ -1,44 +1,51 @@
 'use strict'; 
 (function() {
-  function Person(firstName, lastName, age) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.age = age
+  
+  class Person {
+    constructor(firstName, lastName, age){
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.age = age;
+    }
 
-    Object.defineProperty(this, 'fullName',{
-      get: function() { 
-        return this.firstName + ' ' + this.lastName
-      },
-      enumerable: true
-    });
+    get fullName() {
+      return this.firstName + ' ' + this.lastName; 
+    }
+
+    set fullName(fullName) {
+      let fullNameParts = fullName.split(' ');
+      this.firstName = fullNameParts[0];
+      this.lastName = fullNameParts[1];
+    }
+
+    isAdult(){
+      let dinkingAge = 18;
+      return this.age >= dinkingAge;
+    }
   }
 
-  function Student(firstName, lastName, age) {
-    Person.call(this, firstName, lastName, age)
-    this._enrolledCourses = [];
+  class Student extends Person {
 
-    this.enroll = function(courseId){
+    constructor(firstName, lastName, age) {
+      super(firstName, lastName, age);
+      this._enrolledCourses = [];
+    }
+
+    enroll(courseId){
       this._enrolledCourses.push(courseId)
     }
 
-    this.getCourses = function() {
+    getCourses(){
       return this._enrolledCourses;
     }
   }
 
-  Student.prototype = Object.create(Person.prototype);
-  Student.prototype.constructor = Student;
+  let jim = new Student('Jim', 'Cooper', 50);
+  jim.enroll('MTG183');
+  jim.enroll('SCQ836');
+  jim.enroll('MTG657');
 
-  let jim = new Student('Jim', 'Cooper', 29);
-
-  jim.enroll('NXJ123');
-  jim.enroll('DAS451');
-  jim.enroll('YAP329');
-
-  display(jim);
-  display(jim.getCourse());
-  display(jim.__proto__);
-  display(jim.__proto__.__proto__);
- 
+  display(jim)
+  
 
 })();
